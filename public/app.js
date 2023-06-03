@@ -4,6 +4,7 @@ const weatherIcon = document.querySelector(".weather-icon");
 async function checkWeather(city) {
     const apiUrl = `http://localhost:3000/weather?city=${city}`;
     const response = await fetch(apiUrl);
+    if (response.status === 204) return;
     const data = await response.json();
 
     document.querySelector(".city").textContent = data.name;

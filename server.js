@@ -11,9 +11,12 @@ app.use(express.static('public'))
 
 app.get('/weather', async (req, res) => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${req.query.city}&appid=${process.env.API_KEY}`;
-    const weatherData = (await axios.get(apiUrl)).data
-
-    res.status(200).json(weatherData);
+    try {
+        const weatherData = (await axios.get(apiUrl)).data
+        res.status(200).json(weatherData);
+    } catch {
+        res.status(204)
+    }
 });
 
 app.get("/", (req,res) => {
