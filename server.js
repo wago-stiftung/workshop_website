@@ -54,7 +54,7 @@ app.get("/todo", async (req,res) => {
 })
 
 
-const port = 3000;
+const port = process.env.PORT || 80;
 app.listen(port, () => {
     console.log('server started on port', port);
 });
